@@ -20,5 +20,7 @@ Solve[(u+a)/(u-a)==-E^(2*a*\[Gamma]*t),u]
 FullSimplify[Solve[(u+a)/(u-a)==-E^(2*a*\[Gamma]*t),u]]
 FullSimplify[a*(E^(2*a*\[Gamma]*t)-1)/(E^(2*a*\[Gamma]*t)+1)]
 
+Integrate[Tanh[x],x]
+
 
 
