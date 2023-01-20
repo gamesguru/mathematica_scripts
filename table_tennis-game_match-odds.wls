@@ -13,7 +13,7 @@ Plot[{Pd[x], Pwd[x]},{x,0.2,0.8}, PlotLegends->"Expressions"]
 (*Probability of winning a game, if point is won with probability a*)
 Pg[a_]:=a^11 Sum[Binomial[10+k,k]*(1-a)^k,{k,0,9}]
 
-Plot[{Pg[x],Pg[x] + Pd[x]*Pwd[x]},{x,0.2,0.8}, PlotLegends->"Expressions"]
+Plot[{Pg[x],Pg[x] + Pd[x]*Pwd[x],x},{x,0,1}, PlotLegends->"Expressions"]
 
 (*Should add up to 1*)
 FullSimplify[
@@ -25,14 +25,11 @@ FullSimplify[
 NSolve[0.99==Pg[x] + Pd[x]*Pwd[x],x,Reals]
 
 
-FullSimplify[a^2+2*a^2*(1-a)+2*a (1-a)^2+(1-a)^2]
-FullSimplify[x^2 (3-2x)+(1-x)^2 (3-2(1-x))]
-Plot[x^2 (3-2x),{x,0.5,0.6}]
-
-
 FullSimplify[a^3 (1+3(1-a)+6(1-a)^2)]
 FullSimplify[a^3 (1+3(1-a)+6(1-a)^2) + (1-a)^3 (1+3*a+6*a^2)]
-Plot[{x,x^2 (3-2x),x^3 (1+3(1-x)+6(1-x)^2)},{x,0,1},PlotLegends->"Expressions"]
+
+(*1, 3 and 5 game match odds*)
+Plot[{x^2 (3-2x),x^3 (1+3(1-x)+6(1-x)^2),x},{x,0,1},PlotLegends->"Expressions"]
 
 
 
