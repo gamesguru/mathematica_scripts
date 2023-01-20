@@ -13,7 +13,7 @@ Plot[{Pd[x], Pwd[x]},{x,0.2,0.8}, PlotLegends->"Expressions"]
 (*Probability of winning a game, if point is won with probability a*)
 Pg[a_]:=a^11 Sum[Binomial[10+k,k]*(1-a)^k,{k,0,9}]
 
-Plot[{Pg[x],Pg[x] + Pd[x]*Pwd[x],x},{x,0,1}, PlotLegends->"Expressions"]
+Plot[{Pg[x] + Pd[x]*Pwd[x],x},{x,0,1}, PlotLegends->"Expressions"]
 
 (*Should add up to 1*)
 FullSimplify[
