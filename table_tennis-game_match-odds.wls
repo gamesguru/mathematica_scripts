@@ -25,8 +25,9 @@ Plot[
 Plot[
 {
 	Pg[x] + Pd[x]*Pwd[x],
-	Pg[x]+Pd[x]*x,
+	(*Pg[x]+Pd[x]*x,*)
 	Pg5s[x],
+	Pwd[x],
 	x
 }
 ,{x,0,1}, PlotLegends->"Expressions",AxesLabel->{"P(point)","P(game)"}]
@@ -36,7 +37,7 @@ Simplify[p^2/(p^2+(1-p)^2)==p^2/(1-2*p(1-p))];
 NSolve[0.8==Pg[x] + Pd[x]*Pwd[x],x,Reals]
 
 (*Maximum chance to reach deuce*)
-Pd[1/2]
+Pd[1/2];
 
 
 (*Match odds: best of 1, 3, 5, and 7*)
