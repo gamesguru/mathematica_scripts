@@ -1,13 +1,12 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
-(*Probability of reaching deuce*)
-Pd[a_]:=a^10 Binomial[20,10]*(1-a)^10
-Pwd[a_]:=a^2/(a^2+(1-a)^2)
-Pnaivewd[a_]:=a^2(1+2*a(1-a))
-
-(*Probability of winning a game, if point is won with probability a (without deuce)*)
+(*Probability of winning a game (without deuce), if point is won with probability a*)
 Pg[a_]:=a^11 Sum[Binomial[10+k,k]*(1-a)^k,{k,0,9}]
+
+(*Probability of reaching deuce*)
+Pd[a_]:=Binomial[20,10]*a^10*(1-a)^10
+Pwd[a_]:=a^2/(a^2+(1-a)^2) (*x^2/(1-2*x(1-x))*)
 
 (*Probability of winning in sudden death to 5 pts*)
 Pg5s[a_]:=a^5 Sum[Binomial[4+k,k]*(1-a)^k,{k,0,4}]
@@ -16,26 +15,31 @@ Pg5s[a_]:=a^5 Sum[Binomial[4+k,k]*(1-a)^k,{k,0,4}]
 Plot[
 {
 	Pd[x],
-	x^2,
-	Pnaivewd[x],
-	x^2/(1-2*x(1-x)),
-	Pwd[x]
-},{x,0.2,0.8}, PlotLegends->"Expressions"]
+	(*x^2,*)
+	(*x^2(1+2*x(1-x)),*)
+	(*x^2/(1-2*x(1-x))*)
+	Pwd[x],
+	x
+}
+,{x,0,1}, PlotLegends->"Expressions",AxesLabel->{"P(point)","P(...)"}]
 Plot[
 {
 	Pg[x] + Pd[x]*Pwd[x],
+	Pg[x]+Pd[x]*x,
 	Pg5s[x],
-	(*Pg[x]+Pd[x]*x,*)
 	x
 }
-,{x,0,1}, PlotLegends->"Expressions"]
+,{x,0,1}, PlotLegends->"Expressions",AxesLabel->{"P(point)","P(game)"}]
 Simplify[p^2/(p^2+(1-p)^2)==p^2/(1-2*p(1-p))];
 
 (*Try to solve P(point) based on P(game)*)
 NSolve[0.8==Pg[x] + Pd[x]*Pwd[x],x,Reals]
 
+(*Maximum chance to reach deuce*)
+Pd[1/2]
 
-(*1, 3, 5, and 7 game match odds*)
+
+(*Match odds: best of 1, 3, 5, and 7*)
 Plot[
 {
 	x^2(1+2(1-x)),
@@ -43,4 +47,4 @@ Plot[
 	x^4(1+4(1-x)+10(1-x)^2+20(1-x)^3),
 	x
 }
-,{x,0,1},PlotLegends->"Expressions"]
+,{x,0,1},PlotLegends->"Expressions",AxesLabel->{"P(g)","P(m)"}]
