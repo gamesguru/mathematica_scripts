@@ -1,0 +1,3 @@
+[submodule "andrei"]
+	path = andrei
+	url = git@github.com:gamesguru/andrei.git
